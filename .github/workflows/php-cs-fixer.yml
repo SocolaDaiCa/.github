@@ -7,7 +7,7 @@ on:
         default: "8.2"
         type: string
       message:
-        default: Fix code styling via phpcsfixer
+        default: Run php-cs-fixer
         type: string
       fix:
         default: true
@@ -31,7 +31,7 @@ jobs:
       - name: Install Laravel Audit
         run: composer global require socoladaica/laravel-audit
 
-      - name: Run Phpcsfixer
+      - name: Run php-cs-fixer
         run: php-cs-fixer --config=vendor/socoladaica/laravel-audit/.php_cs.php fix
 
       - name: Commit linted files
