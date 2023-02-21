@@ -32,7 +32,7 @@ jobs:
         run: composer global require socoladaica/laravel-audit
 
       - name: Run php-cs-fixer
-        run: php-cs-fixer --config=vendor/socoladaica/laravel-audit/.php_cs.php fix
+        run: php-cs-fixer --config=/home/runner/.composer/vendor/socoladaica/laravel-audit/.php_cs.php fix
 
       - name: Commit linted files
         if: ${{ inputs.fix }}
