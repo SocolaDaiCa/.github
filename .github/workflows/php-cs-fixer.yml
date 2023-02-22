@@ -30,8 +30,6 @@ jobs:
 
       - name: Install Laravel Audit
         run: composer global require socoladaica/laravel-audit:^1.3
-        env:
-          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{secrets.COMPOSER_AUTH}}"} }' # [tl! **]
 
       - name: Run php-cs-fixer
         run: php-cs-fixer --config=/home/runner/.composer/vendor/socoladaica/laravel-audit/.php_cs.php fix
