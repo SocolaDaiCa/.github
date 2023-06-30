@@ -29,7 +29,7 @@ jobs:
           coverage: none
 
       - name: Install Laravel Audit
-        run: composer global require socoladaica/laravel-audit:1.x-dev
+        run: composer global require socoladaica/laravel-badassium:1.x-dev socoladaica/laravel-audit:1.x-dev
 
       - name: Run php-cs-fixer
         run: php-cs-fixer --config=/home/runner/.composer/vendor/socoladaica/laravel-audit/.php_cs.php fix
