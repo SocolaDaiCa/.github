@@ -35,6 +35,8 @@ jobs:
       - name: Add Composer HTTP basic auth credentials
         run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
 
+      - run: echo ${{ github.repository }}
+
       - run: composer install
       - name: Install socoladaica/laravel-audit
         run: composer require socoladaica/laravel-audit:1.x-dev --dev
