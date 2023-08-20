@@ -35,20 +35,18 @@ jobs:
       - name: Add Composer HTTP basic auth credentials
         run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
 
-      - run: echo ${{ github.repository }}
-
       - run: composer install
       - name: Install socoladaica/laravel-audit
         run: composer require socoladaica/laravel-audit:1.x-dev --dev
-        if: ${{ github.repository != 'socoladaica/laravel-audit' }}
+        if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
 
       - name: Run php-cs-fixer
         run: $GITHUB_WORKSPACE/vendor/bin/php-cs-fixer --config=$GITHUB_WORKSPACE/.php_cs.php fix
-        if: ${{ github.repository == 'socoladaica/laravel-audit' }}
+        if: ${{ github.repository == 'SocolarDaiCa/laravel-audit' }}
 
       - name: Run php-cs-fixer
         run: $GITHUB_WORKSPACE/vendor/bin/php-cs-fixer --config=$GITHUB_WORKSPACE/vendor/socoladaica/laravel-audit/.php_cs.php fix
-        if: ${{ github.repository != 'socoladaica/laravel-audit' }}
+        if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
 
       - name: Reset some uncommitted changes
         run: git checkout -- composer.json composer.lock
