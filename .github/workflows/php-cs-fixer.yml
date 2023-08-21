@@ -16,10 +16,12 @@ on:
       COMPOSER_AUTH:
         required: true
         description: A base64-encoded string containing the composer auth.json file contents.
-
 jobs:
   lint:
     runs-on: ubuntu-latest
+
+    env:
+      SECRETS_A: ${{ secrets.SECRETS_A }}
 
     steps:
       - name: Checkout code
@@ -31,6 +33,8 @@ jobs:
           php-version: ${{ inputs.php }}
           extensions: json, dom, curl, libxml, mbstring
           coverage: none
+
+      - run: echo "secrets.SECRETS_A $SECRETS_A"
 
       - name: Add Composer HTTP basic auth credentials
         run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
