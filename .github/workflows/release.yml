@@ -19,5 +19,4 @@ jobs:
           automatic_release_tag: ${{ inputs.version }}
           prerelease: false
           title: ${{ inputs.version }}
-          body: ${{ inputs.version }}
           files: "*"
