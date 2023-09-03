@@ -17,7 +17,7 @@ on:
         required: true
         description: A base64-encoded string containing the composer auth.json file contents.
 jobs:
-  lint:
+  review-code:
     runs-on: ubuntu-latest
 
     steps:
@@ -36,7 +36,7 @@ jobs:
 
       - run: composer install
       - name: Install socoladaica/laravel-audit
-        run: composer require socoladaica/laravel-audit:1.x-dev --dev
+        run: composer require socoladaica/laravel-audit:1.0 --dev
         if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
 
       - name: Run larastan

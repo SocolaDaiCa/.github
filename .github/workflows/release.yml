@@ -13,10 +13,28 @@ jobs:
     name: "Pre Release"
     runs-on: "ubuntu-latest"
     steps:
+
+      - name: Extract branch name
+        id: extract_branch_name
+        run: echo "::set-output name=branch_name::$(echo ${{ inputs.version }} | awk -F'/' '{print $3}')"
+
+      - name: Set Title based on Version
+        id: set_title
+        run: |
+          if [[ "${{ steps.extract_branch_name.outputs.branch_name }}" == "1.x" ]]; then
+            title="1.0"
+          elif [[ "${{ steps.extract_branch_name.outputs.branch_name }}" == "socoladaica" ]]; then
+            title="socoladaica"
+          else
+            title="${{ steps.extract_branch_name.outputs.branch_name }}"
+          fi
+          echo "title=$title" >> $GITHUB_OUTPUT
+
+      # https://github.com/marvinpinto/action-automatic-releases
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ inputs.version }}
+          automatic_release_tag: ${{ steps.set_title.outputs.title }}
           prerelease: false
-          title: ${{ inputs.version }}
-          files: "*"
+          title: ${{ steps.set_title.outputs.title }}
+          files:
