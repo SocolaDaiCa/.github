@@ -24,7 +24,7 @@ jobs:
           if [[ "${{ steps.extract_branch_name.outputs.branch_name }}" == "1.x" ]]; then
             title="1.0"
           elif [[ "${{ steps.extract_branch_name.outputs.branch_name }}" == "socoladaica" ]]; then
-            title="socoladaica"
+            title="socoladaica-custom"
           else
             title="${{ steps.extract_branch_name.outputs.branch_name }}"
           fi
