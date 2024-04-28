@@ -44,5 +44,5 @@ jobs:
         if: ${{ github.repository == 'SocolarDaiCa/laravel-audit' }}
 
       - name: Run larastan
-        run: $GITHUB_WORKSPACE/vendor/bin/phpstan analyse  -c $GITHUB_WORKSPACE/vendor/socoladaica/laravel-audit/audit.neon
+        run: $GITHUB_WORKSPACE/vendor/bin/phpstan analyse  -c $GITHUB_WORKSPACE/vendor/socoladaica/laravel-audit/audit-package.neon
         if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
