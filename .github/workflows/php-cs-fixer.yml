@@ -12,10 +12,10 @@ on:
       fix:
         default: true
         type: boolean
-#    secrets:
-#      COMPOSER_AUTH:
-#        required: true
-#        description: A base64-encoded string containing the composer auth.json file contents.
+    secrets:
+      COMPOSER_AUTH:
+        required: true
+        description: A base64-encoded string containing the composer auth.json file contents.
 jobs:
   lint:
     runs-on: ubuntu-latest
