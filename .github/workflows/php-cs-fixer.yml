@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SECRETS_A: ${{ secrets.SECRETS_A }}
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
     steps:
       - name: Checkout code
