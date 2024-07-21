@@ -52,7 +52,7 @@ jobs:
         if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
 
       - name: Reset some uncommitted changes
-        run: git checkout -- composer.json composer.lock
+        run: git checkout -- composer.json
 
       - name: Commit linted files
         if: ${{ inputs.fix }}
