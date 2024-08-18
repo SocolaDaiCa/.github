@@ -40,7 +40,7 @@ jobs:
       - run: composer install
       - run: composer update
       - name: Install socoladaica/laravel-audit
-        run: composer require socoladaica/laravel-audit:1.0 --dev
+        run: composer require socoladaica/laravel-audit:2.0 --dev
         if: ${{ github.repository != 'SocolarDaiCa/laravel-audit' }}
 
       - name: Run php-cs-fixer

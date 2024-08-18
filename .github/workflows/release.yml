@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       version:
-        default: "1.0"
+        default: "2.0"
         type: string
 jobs:
   release:
