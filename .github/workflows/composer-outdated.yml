@@ -1,0 +1,55 @@
+name: Find outdated packages
+
+on:
+  workflow_call:
+    inputs:
+      php:
+        default: "8.2"
+        type: string
+      message:
+        default: "Find outdated package"
+        type: string
+      fix:
+        default: true
+        type: boolean
+    secrets:
+      COMPOSER_AUTH:
+        required: true
+        description: A base64-encoded string containing the composer auth.json file contents.
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    env:
+      COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ inputs.php }}
+          extensions: json, dom, curl, libxml, mbstring
+          coverage: none
+
+      - name: Add Composer HTTP basic auth credentials
+        run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
+
+      - run: composer install
+
+      - name: Update package to latest
+        run: composer update
+
+      - name: Find outdated packages
+        run: composer outdated --direct
+
+      - name: Reset some uncommitted changes
+        run: git checkout -- composer.json
+
+      - name: Commit updated packages
+        if: ${{ inputs.fix }}
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: ${{ inputs.message }}
